@@ -1,0 +1,18 @@
+package inventory.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import inventory.service.ProductService;
+import inventory.validate.CategoryValidator;
+
+@Controller
+public class CategoryController {
+	
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private CategoryValidator categoryValidator;
+	
+	
+}

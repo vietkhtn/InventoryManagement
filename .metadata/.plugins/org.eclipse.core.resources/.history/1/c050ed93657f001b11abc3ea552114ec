@@ -1,0 +1,47 @@
+<div class="right_col" role="main">
+	<div class="">
+		<div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Category List </h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title"># </th>
+                            <th class="column-title">Id </th>
+                            <th class="column-title">Code </th>
+                            <th class="column-title">Name </th>
+                            <th class="column-title">Description </th>
+                            <th class="column-title no-link last text-center" colspan = "3"><span class="nobr">Action</span>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr class="even pointer">
+                            <td class=" ">121000040</td>
+                            <td class=" ">May 23, 2014 11:47:56 PM </td>
+                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
+                            <td class=" last"><a href="#">View</a>
+                            <td class=" last"><a href="#">Edit</a>
+                            <td class=" last"><a href="#">Delete</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+	</div>
+</div>

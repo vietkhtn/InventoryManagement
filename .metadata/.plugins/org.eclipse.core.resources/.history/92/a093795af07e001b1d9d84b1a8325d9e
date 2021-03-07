@@ -1,0 +1,24 @@
+package inventory.controller;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import inventory.model.Category;
+import inventory.service.ProductService;
+import inventory.validate.CategoryValidator;
+
+@Controller
+public class CategoryController {
+	
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private CategoryValidator categoryValidator;
+	
+	static final Logger log = Logger.getLogger(Category.class);
+	
+	@InitBinder
+	
+	
+}
