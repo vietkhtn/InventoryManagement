@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index Controller</title>
+</head>
+<body>
 
-<div class="right_col" role="main">
-	<div class="">
-		<div class="page-title">
-			<div class="title_left">
-				<p>Index Controller</p>
-			</div>
-		</div>
-	</div>
-</div>
+</body>
+</html>

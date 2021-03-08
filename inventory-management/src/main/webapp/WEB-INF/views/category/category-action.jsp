@@ -15,7 +15,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 						
-								<div class="x_content">
+								<div class="x_content"> 
 									<br />
 									<form:form modelAttribute="modelForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/category/save" method="POST">
 										<form:hidden path="id"></form:hidden>
@@ -69,6 +69,7 @@
 </div>
 <script>
 $(document).ready(function(){
+	// Determind url at current page to highligh in side-bar
 	$('#categorylistId').addClass('current-page').siblings().removeClass('current-page');
 	var parents = $('#categorylistId').parents('li');
 	parents.addClass('active').siblings().removeClass('active');
