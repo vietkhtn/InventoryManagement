@@ -19,11 +19,11 @@
 									<br />
 									<form:form modelAttribute="modelForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/category/save" method="POST">
 										<form:hidden path="id"></form:hidden>
-										<form:hidden path="activeFlag"></form:hidden>
+										<form:hidden path="activeFlag"></form:hidden> 
 										<form:hidden path="createDate"></form:hidden>
 										
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Code <span class="required">*</span></label>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="code">Code <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
 												<form:input path="code" cssClass="form-control " disabled="${viewOnly}"/>
 												<div class="has-error">
@@ -32,7 +32,7 @@
 											</div>
 										</div>
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Name <span class="required">*</span></label>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Name <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
 												<form:input path="name" cssClass="form-control" disabled="${viewOnly}"/>
 												<div class="has-error">
@@ -41,7 +41,7 @@
 											</div>
 										</div>
 										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
+											<label for="description" class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
 											<div class="col-md-6 col-sm-6 ">
 												<form:input path="description" cssClass="form-control"  disabled="${viewOnly}"/>
 												<div class="has-error">

@@ -16,7 +16,7 @@
                   <a class="btn btn-app" href="<c:url value="/category/add"/>"><i class="fa fa-plus"></i> Add</a>
                   <!-- Form Search -->
                   <div class="container" style="padding: 50px;">
-						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/category/list" method="POST">
+						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/category/list/1" method="POST">
 							<div class="form-group">
 								<label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">ID</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
@@ -75,7 +75,7 @@
                         		 	<tr class="odd pointer">
                         		</c:otherwise>
                         	</c:choose>
-                            <td class=" ">${loop.index + 1}</td>
+                            <td class=" ">${pageInfo.getOffset() + loop.index + 1}</td>
                             <td class=" ">${category.id }</td>
                             <td class=" ">${category.code } </td>
                             <td class=" ">${category.name }</td>
@@ -88,9 +88,8 @@
                           
                         </tbody>
                       </table>
+                     <jsp:include page="../layout/paging.jsp"></jsp:include>
                     </div>
-							
-						
                   </div>
                 </div>
               </div>
@@ -98,7 +97,7 @@
 </div>
 <script>
 function confirmDelete(id){
-	if (confirm("Do you wnt delete this category ?")) {
+	if (confirm("Do you want delete this category ?")) {
 		window.location.href = '<c:url value="/category/delete/"/>' + id;
 	}
 }
@@ -107,6 +106,11 @@ function confirmDelete(id){
 $(document).ready(function(){
 	processMessage();
 })
+
+function gotoPage(page) {
+	$('#searchForm').attr('action', '<c:url value="/category/list/"/>' + page);
+	$('#searchForm').submit();
+}
 
 function processMessage() {
 	// Get message variable in Constant class

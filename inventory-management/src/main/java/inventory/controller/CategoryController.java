@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import inventory.model.Category;
+import inventory.model.Paging;
 import inventory.service.ProductService;
 import inventory.util.Constant;
 import inventory.validate.CategoryValidator;
@@ -51,9 +52,25 @@ public class CategoryController {
 		}
 	}
 	
-	@RequestMapping("/category/list")
-	public String showCategoryList(Model model, HttpSession session, @ModelAttribute("searchForm") Category category) {
-		List<Category> categories = productService.getAllCategory(category);
+	//  Handle if user set url /category/list => go to first page
+	@RequestMapping(value= {"/category/list","/category/list/"})
+	public String redirect() {
+		return "redirect:/category/list/1";
+	}
+	
+	/*Show List Cateogry (for show list and search action), and also paging
+	 * @Model transfer data
+	 * @HttpSession store message handle to show on frontend
+	 * @ModelAttribute get searchForm to show list result
+	 * @PathVariable for paging list result 
+	 * */
+	@RequestMapping("/category/list/{page}")
+	public String showCategoryList(Model model, HttpSession session, @ModelAttribute("searchForm") Category category, @PathVariable("page") int page) {
+		// Init paging
+		Paging paging = new Paging(5);
+		paging.setIndexPage(page);
+		
+		List<Category> categories = productService.getAllCategory(category, paging);
 		// Check session notification is success or error than asign into model to show notify on frontend
 		if (session.getAttribute(Constant.SUCCESS_MSG) != null) {
 			model.addAttribute(Constant.SUCCESS_MSG, session.getAttribute(Constant.SUCCESS_MSG));
@@ -63,6 +80,7 @@ public class CategoryController {
 			model.addAttribute(Constant.ERROR_MSG, session.getAttribute(Constant.ERROR_MSG));
 			session.removeAttribute(Constant.ERROR_MSG);
 		}
+		model.addAttribute("pageInfo", paging);
 		model.addAttribute("categories", categories);
 		return "category-list";	
 	}

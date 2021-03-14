@@ -119,13 +119,16 @@ $MENU_TOGGLE.on('click', function() {
 });
 
 	// check active menu
-	$SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
+	//$SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
 
 	$SIDEBAR_MENU.find('a').filter(function () {
-		return this.href == CURRENT_URL;
-	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
+		/*fix not active sub function in side bar when change url with paging*/
+		/*old: return this.href == CURRENT_URL*/
+		return CURRENT_URL.indexOf(this.href) > -1;
+		/*remove other sub function highlight*/
+	}).parent('li').addClass('current-page').siblings().removeClass('current-page').parents('ul').slideDown(function() {
 		setContentHeight();
-	}).parent().addClass('active');
+	}).parent().addClass('active').siblings().removeClass('active');
 
 	// recompute content when resizing
 	$(window).smartresize(function(){  

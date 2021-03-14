@@ -1,0 +1,4 @@
+#Config location store upload product image on server (my computer)
+upload.location = D:/uploadImage
+#Config location for spring servlet mapping upload product image on server (my computer)
+upload.servlet.location = D:\uploadImage
