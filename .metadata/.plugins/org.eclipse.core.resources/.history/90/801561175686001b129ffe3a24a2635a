@@ -1,0 +1,5 @@
+package inventory.dao;
+
+public class HistoryDAOImpl<History> extends BaseDAOImpl<History> implements HistoryDAO<History> {
+
+}

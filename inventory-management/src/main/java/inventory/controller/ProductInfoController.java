@@ -1,6 +1,5 @@
 package inventory.controller;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import inventory.model.ProductInfo;
 import inventory.model.Category;
@@ -72,7 +70,7 @@ public class ProductInfoController {
 	@RequestMapping("/product-info/list/{page}")
 	public String showProductInfoList(Model model, HttpSession session, @ModelAttribute("searchForm") ProductInfo productInfo, @PathVariable("page") int page) {
 		// Init paging
-		Paging paging = new Paging(5);
+		Paging paging = new Paging(Constant.itemsPerPage);
 		paging.setIndexPage(page);
 		
 		List<ProductInfo> products = productService.getAllProductInfo(productInfo, paging);
@@ -85,6 +83,14 @@ public class ProductInfoController {
 			model.addAttribute(Constant.ERROR_MSG, session.getAttribute(Constant.ERROR_MSG));
 			session.removeAttribute(Constant.ERROR_MSG);
 		}
+		//Show list all category at front end to choose product belongs to its category
+		List<Category> categories = productService.getAllCategory(null, null);
+		Map<String, String> mapCategory = new HashMap<>();
+		for (Category category : categories) {
+			mapCategory.put(String.valueOf(category.getId()), category.getName());
+		}
+		//store mapCategory in model
+		model.addAttribute("mapCategory",mapCategory);		
 		model.addAttribute("pageInfo", paging);
 		model.addAttribute("products", products);
 		return "productInfo-list";	

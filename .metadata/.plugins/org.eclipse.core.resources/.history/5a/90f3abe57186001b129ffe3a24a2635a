@@ -1,0 +1,56 @@
+package inventory.service;
+
+import java.util.Date;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import inventory.dao.HistoryDAO;
+import inventory.dao.InvoiceDAO;
+import inventory.dao.ProductInStockDAO;
+import inventory.model.History;
+import inventory.model.Invoice;
+import inventory.model.ProductInStock;
+import inventory.util.Constant;
+
+@Service
+public class InvoiceService {
+
+	static final Logger log = Logger.getLogger(InvoiceService.class);
+	
+	@Autowired 
+	private ProductInStockService productInStockService;
+	
+	@Autowired
+	private HistoryService historyService;
+	
+	@Autowired
+	private InvoiceDAO<Invoice> invoiceDAO;
+	
+	// Save in invoice, product-in-stock and history table
+	public void save(Invoice invoice) throws Exception {
+		invoice.setActiveFlag(1);
+		invoice.setCreateDate(new Date());
+		invoice.setUpdateDate(new Date());
+		invoiceDAO.save(invoice);
+		historyService.save(invoice, Constant.ACTION_ADD);
+		productInStockService.saveOrUpdate(invoice);
+	}
+	
+	// Update invoice
+	public void update(Invoice invoice) throws Exception{
+		// Get quantity product of invoice added in db
+		int originQty = invoiceDAO.findById(Invoice.class, invoice.getId()).getQty();
+		invoice.setUpdateDate(new Date());
+		Invoice invoice2 = new Invoice();
+		invoice2.setProductInfo(invoice.getProductInfo());
+		// Update new quantity is (invoice.getQty() - originQty)
+		invoice2.setQty(invoice.getQty() - originQty);
+		invoice2.setPrice(invoice.getPrice());
+		invoiceDAO.save(invoice);
+		historyService.save(invoice, Constant.ACTION_EDIT);
+		// Then in productInStock table update quantity of product
+		productInStockService.saveOrUpdate(invoice2);
+	}
+}

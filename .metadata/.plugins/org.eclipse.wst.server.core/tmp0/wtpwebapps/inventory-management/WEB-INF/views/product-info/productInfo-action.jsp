@@ -21,7 +21,7 @@
 										<form:hidden path="id"/>
 										<form:hidden path="activeFlag"/> 
 										<form:hidden path="createDate"/>
-										<form:hidden path="imgUrl"/>
+										<form:hidden var="imgSrc" path="imgUrl"/>
 										
 										<!-- Select category -->
 										<!-- Check if not in view action => select category, if in view action => show form category name -->
@@ -43,9 +43,7 @@
 												</c:choose>				
 											</div>
 										</div>
-										
-										
-										
+																		
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="code">Code <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
@@ -74,14 +72,6 @@
 												</div>
 											</div>
 										</div>
-										
-										<!-- Image -->
-										<div class="item form-group">
-											<label for="imgUrl" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
-											<div class="col-md-6 col-sm-6 ">
-                            			    	<form:input path="imgUrl" width="200px" height="200px" type="image"/>     					
-											</div>
-										</div>
 						
 										<!-- Upload file -->
 										<c:if test="${!viewOnly}">
@@ -95,6 +85,14 @@
 												</div>
 											</div>
 										</c:if>			
+										
+										<!-- Image -->
+										<div class="item form-group">
+											<label for="imgUrl" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
+											<div class="col-md-6 col-sm-6 ">
+                            			    	<img src="<c:url value="${imgUrl}"/>" width="300px" height="300px"/>   
+											</div>
+										</div>
 																										
 										<!-- line seperated -->
 										<div class="ln_solid"></div>
@@ -123,7 +121,6 @@ $(document).ready(function(){
 	parents.addClass('active').siblings().removeClass('active');
 	$('#categorylistId').parents().show();
 })
-
 function cancel() {
 	window.location.href = '<c:url value="/product-info/list"/>';
 }

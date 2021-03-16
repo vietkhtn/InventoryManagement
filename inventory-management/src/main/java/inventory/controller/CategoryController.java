@@ -67,7 +67,7 @@ public class CategoryController {
 	@RequestMapping("/category/list/{page}")
 	public String showCategoryList(Model model, HttpSession session, @ModelAttribute("searchForm") Category category, @PathVariable("page") int page) {
 		// Init paging
-		Paging paging = new Paging(5);
+		Paging paging = new Paging(Constant.itemsPerPage);
 		paging.setIndexPage(page);
 		
 		List<Category> categories = productService.getAllCategory(category, paging);

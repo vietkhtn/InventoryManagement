@@ -117,6 +117,10 @@ public class ProductService {
 				queryStr.append(" and model.name like :name");
 				mapParams.put("name", "%" + productInfo.getName() + "%");
 			}
+			if (productInfo.getCateId() != null &&  productInfo.getCateId() != 0) {
+				queryStr.append(" and model.category.id = :cateId");
+				mapParams.put("cateId", productInfo.getCateId());
+			}
 		}
 		return productInfoDAO.findAll(queryStr.toString(), mapParams, paging);
 	}

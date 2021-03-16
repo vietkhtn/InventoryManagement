@@ -1,7 +1,0 @@
-package inventory.sercurity;
-
-import org.springframework.web.servlet.HandlerInterceptor;
-
-public class FilterSystem implements HandlerInterceptor{
-
-}

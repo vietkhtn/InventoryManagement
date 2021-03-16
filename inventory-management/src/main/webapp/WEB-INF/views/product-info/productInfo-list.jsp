@@ -39,6 +39,17 @@
 							</div>
 							
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="cateId">Category 
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<form:select path="cateId" cssClass="form-control">
+										<option value=""/>
+										<form:options items="${mapCategory}" />
+									</form:select>
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 										<button type="submit" class="btn btn-success">Search</button>
 								</div>
@@ -58,6 +69,7 @@
                             <th class="column-title">Id </th>
                             <th class="column-title">Code </th>
                             <th class="column-title">Name </th>
+                            <th class="column-title">Category </th>
                             <th class="column-title">Image </th>
                             <th class="column-title no-link last text-center" colspan = "3"><span class="nobr">Action</span>
                             </th>
@@ -79,8 +91,9 @@
                             <td class=" ">${product.id }</td>
                             <td class=" ">${product.code } </td>
                             <td class=" ">${product.name }</td>
+                            <td class=" ">${product.category.name }</td>
                             <td class=" ">
-                            	<img src="<c:url value="${product.imgUrl}"/>" width="100px" height="100px"/>
+                            	<img src="<c:url value="${product.imgUrl}"/>" width="100px" height="100px"/>                   	
                             </td>
                             <td class="text-center"><a href="<c:url value="/product-info/view/${product.id}"/>" class="btn btn-round btn-default" href="#">View</a>
                             <td class="text-center"><a href="<c:url value="/product-info/edit/${product.id}"/>" class="btn btn-round btn-primary" href="#">Edit</a>
