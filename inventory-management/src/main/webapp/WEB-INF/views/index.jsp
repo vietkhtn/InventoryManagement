@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index Controller</title>
+
 </head>
 <body>
-
+<h2>Index Controller</h2>
 </body>
 </html>

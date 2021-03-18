@@ -35,9 +35,9 @@ public class ProductInStockService {
 		Map<String, Object> mapParams = new HashMap<>();
 		if (productInStock != null && productInStock.getProductInfo() != null) {
 			
-			if (!StringUtils.isEmpty(productInStock.getProductInfo().getCategory().getName())) {
-				queryStr.append(" and model.productInfo.category.name like :cateName");
-				mapParams.put("cateName", "%" + productInStock.getProductInfo().getCategory().getName() + "%");
+			if (productInStock.getProductInfo().getCategory().getId() != null && productInStock.getProductInfo().getCategory().getId() != 0) {
+				queryStr.append(" and model.productInfo.category.id = :cateId");
+				mapParams.put("cateId", productInStock.getProductInfo().getCategory().getId());
 			}
 			
 			if (productInStock.getProductInfo().getCode() != null && !StringUtils.isEmpty(productInStock.getProductInfo().getCode())) {
@@ -66,9 +66,15 @@ public class ProductInStockService {
 			if (products != null && !products.isEmpty()) {
 				product = products.get(0);
 				log.info("update qty=" + invoice.getQty() + " and price = " + invoice.getPrice());
-				product.setQty(product.getQty() +  invoice.getQty());
+				// If invoiceType == 2 => goods issue => product in stock - invoice quantity
+				if (invoice.getType() == 2) {
+					product.setQty(product.getQty() -  invoice.getQty());
+				}
+				else {
+					product.setQty(product.getQty() +  invoice.getQty());
+				}
 				// Check invoice type is receipt or issues (if receipt => update price/ if issues => not update price)
-				if (invoice.getType() == 1) {
+				if (invoice.getType() == 1) {					
 					product.setPrice(invoice.getPrice());
 				}
 				product.setUpdateDate(new Date());

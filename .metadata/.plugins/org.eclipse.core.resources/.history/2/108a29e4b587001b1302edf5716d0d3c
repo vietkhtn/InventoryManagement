@@ -1,0 +1,18 @@
+package inventory.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateUtil {
+	public static String dateToString(Date date) {
+		// Convert Create Date from String to TimeStamp to insert Invoice to db
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(date);
+	}
+	
+	public static String currentMillisToDateTimeString(Date date) {
+		// Convert Create Date from String to TimeStamp to insert Invoice to db
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(date);
+	}
+}

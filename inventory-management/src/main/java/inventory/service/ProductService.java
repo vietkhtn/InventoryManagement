@@ -137,7 +137,7 @@ public class ProductService {
 		productInfo.setCreateDate(new Date());
 		productInfo.setUpdateDate(new Date());
 		// Create file image name
-		String fileName = System.currentTimeMillis() + "_" + productInfo.getMultipartFile().getOriginalFilename();
+		String fileName =  System.currentTimeMillis() + "_" + productInfo.getMultipartFile().getOriginalFilename();
 		// add new image file upload
 		processUploadFile(productInfo.getMultipartFile(), fileName);
 		// Store image upload by url file name
@@ -150,7 +150,7 @@ public class ProductService {
 		// if fileName not Empty
 		if(!productInfo.getMultipartFile().getOriginalFilename().isEmpty()) {
 			// Create file image name
-			String fileName = System.currentTimeMillis() + "_" + productInfo.getMultipartFile().getOriginalFilename();
+			String fileName =  System.currentTimeMillis() + "_" + productInfo.getMultipartFile().getOriginalFilename();
 			// update new image file upload
 			processUploadFile(productInfo.getMultipartFile(), fileName);
 			productInfo.setImgUrl("/upload/" + fileName);

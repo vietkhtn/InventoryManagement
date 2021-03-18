@@ -34,9 +34,9 @@ public class HistoryService {
 		Map<String, Object> mapParams = new HashMap<>();
 		if (history != null) {
 			if (history.getProductInfo() != null) {
-				if (!StringUtils.isEmpty(history.getProductInfo().getCategory().getName())) {
-					queryStr.append(" and model.productInfo.category.name like :cateName");
-					mapParams.put("cateName", "%" + history.getProductInfo().getCategory().getName() + "%");
+				if (history.getProductInfo().getCategory().getId() != null && history.getProductInfo().getCategory().getId() != 0) {
+					queryStr.append(" and model.productInfo.category.id = :cateId");
+					mapParams.put("cateId", history.getProductInfo().getCategory().getId());
 				}			
 				if (!StringUtils.isEmpty(history.getProductInfo().getCode())) {
 					queryStr.append(" and model.productInfo.code = :code");

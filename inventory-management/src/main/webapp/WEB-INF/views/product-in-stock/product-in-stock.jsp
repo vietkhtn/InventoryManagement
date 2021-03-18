@@ -27,18 +27,23 @@
 							</div>
 							
 							<div class="form-group">
-								<label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<form:input path="productInfo.category.name" cssClass="form-control col-md-7 col-xs-12"  />
-								</div>
-							</div>
-							
-							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<form:input path="productInfo.name" cssClass="form-control col-md-7 col-xs-12"  />
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="cateId">Category 
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<form:select path="productInfo.category.id" cssClass="form-control">
+										<option value=""/>
+										<form:options items="${mapCategory}" />
+									</form:select>
+								</div>
+							</div>
+							
 							
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

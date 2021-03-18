@@ -17,6 +17,8 @@
                   <div class="x_content">
                   <!-- Add Button -->
                   <a class="btn btn-app" href="<c:url value="/goods-receipt/add"/>"><i class="fa fa-plus"></i> Add</a>
+                  <!-- Export Button -->
+                  <a class="btn btn-app" href="<c:url value="/goods-receipt/export"/>"><i class="fa fa-cloud-download"></i> Export</a>
                   <!-- Form Search -->
                   <div class="container" style="padding: 50px;">
 						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/goods-receipt/list/1" method="POST">
@@ -95,7 +97,6 @@
                             
                             <td class="text-center"><a href="<c:url value="/goods-receipt/view/${invoice.id}"/>" class="btn btn-round btn-default" href="#">View</a>
                             <td class="text-center"><a href="<c:url value="/goods-receipt/edit/${invoice.id}"/>" class="btn btn-round btn-primary" href="#">Edit</a>
-                            <td class="text-center"><a onclick="confirmDelete(${invoice.id});" class="btn btn-round btn-danger" href="#">Delete</a>
                             </td>
                          </c:forEach>
                           
@@ -109,11 +110,6 @@
 	</div>
 </div>
 <script>
-function confirmDelete(id){
-	if (confirm("Do you want delete this invoice ?")) {
-		window.location.href = '<c:url value="/goods-receipt/delete/"/>' + id;
-	}
-}
 
 /* If backend return any message success/error => use PNotify to show message */
 $(document).ready(function(){

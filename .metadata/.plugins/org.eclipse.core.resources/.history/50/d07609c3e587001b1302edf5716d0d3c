@@ -1,0 +1,96 @@
+package inventory.service;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import inventory.dao.UserDAO;
+import inventory.dao.UserRoleDAO;
+import inventory.model.Paging;
+import inventory.model.UserRole;
+import inventory.model.Users;
+
+@Service
+public class UserService {
+	final static Logger log = Logger.getLogger(UserService.class);
+	
+	@Autowired
+	private UserDAO<Users> userDAO;
+	
+	@Autowired
+	private UserRoleDAO<UserRole> userRoleDAO;
+	
+	public List<Users> findByProperty(String property , Object value) {
+		log.info("Find user by property start ");
+		return userDAO.findByProperty(property, value);
+		
+	}
+	
+	public List<Users> getAllUser(Users user, Paging paging){
+		log.info("Show all user");
+		StringBuilder queryStr = new StringBuilder();
+		Map<String, Object> mapParams = new HashMap<>();
+		if (user != null) {
+			if (user.getUserName() != null && !StringUtils.isEmpty(user.getUserName())) {
+				queryStr.append(" and model.userName = :userName");
+				mapParams.put("userName", user.getUserName());
+			}
+			if (user.getName()!= null && !StringUtils.isEmpty(user.getName())) {
+				queryStr.append(" and model.name = :name");
+				mapParams.put("name", user.getName());
+			}
+		}
+		return userDAO.findAll(queryStr.toString(), mapParams, paging);
+	}
+	
+	public void saveUser(Users user, UserRole userRole) {
+		log.info("Save user " + user.toString());
+		user.setActiveFlag(1);
+		user.setUserName(user.getUserName());
+		user.setPassword(user.getPassword());
+		user.setEmail(user.getEmail());
+		user.setName(user.getName());
+		user.setCreateDate(new Date());
+		user.setUpdateDate(new Date());
+		userDAO.save(user);
+		// Also save user in USER_ROLE
+		log.info("Save user role " + userRole.toString());
+		userRole.setActiveFlag(1);
+		userRole.setUsers(user);
+		userRole.setCreateDate(new Date());
+		userRole.setUpdateDate(new Date());
+		userRoleDAO.save(userRole);
+	}
+	
+	public void updateUser(Users user, UserRole userRole) {
+		log.info("Update user " + user.toString());
+		user.setCreateDate(new Date());
+		user.setUpdateDate(new Date());
+		userDAO.update(user);
+		// Also save user in USER_ROLE
+		log.info("Update user role " + userRole.toString());
+		userRole.setUsers(user);
+		userRole.setCreateDate(new Date());
+		userRole.setUpdateDate(new Date());
+		userRoleDAO.update(userRole);
+	}
+	
+	public void deleteUser(Users user, UserRole userRole) {
+		log.info("Delete User " + userRole.toString());
+		user.setActiveFlag(0);
+		user.setUpdateDate(new Date());
+		userDAO.update(user);
+		// Also save user in USER_ROLE
+		log.info("Update user role " + userRole.toString());
+		userRole.setActiveFlag(0);
+		userRole.setUsers(user);
+		userRole.setUpdateDate(new Date());
+		userRoleDAO.update(userRole);
+	}
+}

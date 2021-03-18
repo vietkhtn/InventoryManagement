@@ -26,16 +26,23 @@
 							</div>
 							
 							<div class="form-group">
-								<label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="cateId">Category 
+								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<form:input path="productInfo.category.name" cssClass="form-control col-md-7 col-xs-12"  />
+									<form:select path="productInfo.category.id" cssClass="form-control">
+										<option value=""/>
+										<form:options items="${mapCategory}" />
+									</form:select>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Action </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<form:input path="actionName" cssClass="form-control col-md-7 col-xs-12"  />
+									<form:select path="actionName" cssClass="form-control">
+										<option value=""/>
+										<form:options items="${mapAction}"/>
+									</form:select>
 								</div>
 							</div>
 							
@@ -71,7 +78,8 @@
                             <th class="column-title">Qty </th>
                             <th class="column-title">Price </th>
                             <th class="column-title">Type </th>
-                            <th class="column-title">Action </th>                            
+                            <th class="column-title">Action </th>
+                            <th class="column-title">Time </th>                            
                           </tr>
                         </thead>
 
@@ -102,7 +110,7 @@
                             	</c:otherwise>
                             </c:choose>
                             <td class=" ">${history.actionName }</td>
-                            
+                            <td class=" ">${history.updateDate }</td>
                          </c:forEach>         
                         </tbody>
                       </table>

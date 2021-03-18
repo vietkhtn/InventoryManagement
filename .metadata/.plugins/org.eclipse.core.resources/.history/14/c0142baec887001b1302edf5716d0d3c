@@ -1,0 +1,12 @@
+package inventory.util;
+
+public class HashingPassword {
+	static final String SALT = "inventory_management";
+	
+	public static String encrypt(String originPassword) {
+		String result = null;
+		byte[] salt = SALT.getBytes();
+		System.out.println(salt);
+		MessageDigest md = MessageDigest.
+	}
+} 

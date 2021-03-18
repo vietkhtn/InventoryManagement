@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<!-- Convert number to currency 1000000 => 1,000,000 use for price-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <div class="right_col" role="main">
 	<div class="">
 		<div class="page-title">
@@ -39,8 +40,8 @@
 											<div class="col-md-6 col-sm-6 ">
 												<c:choose>
 													<c:when test="${!viewOnly}">
-														<form:select path="productId" cssClass="form-control">
-															<form:options items="${mapProduct}" />
+														<form:select path="productId" cssClass="form-control" >
+															<form:options items="${mapProduct}"/>
 														</form:select>
 														<div class="has-error">
 															<form:errors path="productId" cssClass="help-block"></form:errors>
@@ -52,7 +53,7 @@
 												</c:choose>				
 											</div>
 										</div>
-										
+																		
 										<div class="item form-group">
 											<label for="qty" class="col-form-label col-md-3 col-sm-3 label-align">Qty <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
@@ -98,6 +99,8 @@ $(document).ready(function(){
 	var parents = $('#goods-receiptId').parents('li');
 	parents.addClass('active').siblings().removeClass('active');
 	$('#goods-receiptId').parents().show();
+	//format price
+	$("#price").text(numeral($(this).text()).format('0,0'));
 })
 function cancel() {
 	window.location.href = '<c:url value="/goods-receipt/list"/>';
