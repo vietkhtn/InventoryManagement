@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import inventory.model.Auth;
 import inventory.model.Paging;
 @Repository
 @Transactional(rollbackFor =Exception.class)
@@ -25,7 +26,7 @@ public class BaseDAOImpl<E> implements BaseDAO<E>{
 		log.info("find all record from db");
 		StringBuilder queryString = new StringBuilder("");
 		StringBuilder countQuery = new StringBuilder();
-		queryString.append(" from ").append(getGenericName()).append(" as model where model.activeFlag=1");
+		queryString.append(" from ").append(getGenericName()).append(" as model where model.activeFlag = 1");
 		// Query count records for paging
 		countQuery.append("select count(*) from ").append(getGenericName()).append(" as model where model.activeFlag = 1");
 		// If queryStr is valid => combine queryString to queryStr to find list category
@@ -46,7 +47,7 @@ public class BaseDAOImpl<E> implements BaseDAO<E>{
 		if (paging != null){
 			query.setFirstResult(paging.getOffset()); // init at 0
 			query.setMaxResults(paging.getRecordPerPage());
-			long totalRecords = (long) countQ.uniqueResult(); // get total records by result reuturn by countQ query
+			long totalRecords = (long) countQ.uniqueResult(); // get total records by result return by countQ query
 			paging.setTotalRows(totalRecords);
 		}
 		log.info( "Query find all ====>" + queryString.toString());
@@ -56,6 +57,13 @@ public class BaseDAOImpl<E> implements BaseDAO<E>{
 
 	public E findById(Class<E> e, Serializable id) {
 		log.info("Find by ID ");
+		StringBuilder countQuery = new StringBuilder();
+		countQuery.append("select count(*) from ").append(getGenericName()).append(" as model where model.activeFlag = 1");
+		Query<E> countQ = sessionFactory.getCurrentSession().createQuery(countQuery.toString());
+		long totalRecords = (long) countQ.uniqueResult();
+		if (totalRecords == 0) {
+			return null;
+		}
 		return sessionFactory.getCurrentSession().get(e, id);
 	}
 
@@ -71,12 +79,12 @@ public class BaseDAOImpl<E> implements BaseDAO<E>{
 	}
 
 	public void save(E instance) {
-		log.info(" save instance");
+		log.info("save instance");
 		sessionFactory.getCurrentSession().persist(instance);
 	}
 
 	public void update(E instance) {
-		log.info("update");
+		log.info("update instance");
 		sessionFactory.getCurrentSession().merge(instance);
 	}
 	//

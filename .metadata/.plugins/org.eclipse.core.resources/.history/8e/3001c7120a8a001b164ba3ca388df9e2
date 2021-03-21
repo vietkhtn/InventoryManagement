@@ -1,0 +1,33 @@
+package inventory.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import inventory.dao.MenuDAO;
+import inventory.model.Menu;
+import inventory.model.Paging;
+
+@Service
+public class MenuService {
+
+	@Autowired 
+	private MenuDAO<Menu> menuDAO;
+	
+	Logger log = Logger.getLogger(Menu.class);
+	
+	public List<Menu> getListMenu(Menu menu, Paging paging){
+		log.info("Show all menu");
+		StringBuilder queryStr = new StringBuilder();
+		Map<String, Object> mapParams = new HashMap<>();
+		if(menu != null) {
+			queryStr.append(" and model.url = :url");
+			mapParams.put("url", menu.getUrl());
+		}
+		return menuDAO.findAll(queryStr.toString(), mapParams,paging);
+	}
+}

@@ -1,0 +1,5 @@
+package inventory.dao;
+
+public class MenuDAOImpl<Menu> extends BaseDAOImpl<Menu> implements MenuDAO<Menu>{ 
+
+}

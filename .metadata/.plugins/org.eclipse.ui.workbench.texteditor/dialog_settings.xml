@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="servlet"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="/D:/Download/Java/apache-tomcat-7.0.108"/>
-			<item value="servlet"/>
-			<item value="invoice"/>
-			<item value="category"/>
-			<item value="qty"/>
-			<item value="Category"/>
-			<item value="productInfo"/>
-			<item value="ProductInfo"/>
-			<item value="product-in-stock"/>
-			<item value="productInStock"/>
-			<item value="ProductInStock"/>
-			<item value="modelForm"/>
-			<item value="productInfos"/>
-			<item value="categories"/>
-			<item value="mapCatergory"/>
+			<item value="profile_info"/>
+			<item value="navbar "/>
+			<item value="index"/>
+			<item value="id"/>
+			<item value="roleList"/>
+			<item value="menuList"/>
+			<item value="role"/>
+			<item value="user"/>
+			<item value="MSG_ERROR"/>
+			<item value="MSG_SUCCESS"/>
+			<item value="Find user by property start "/>
+			<item value="usery"/>
+			<item value="find"/>
+			<item value="username"/>
+			<item value="des"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ERROR_MSG"/>
+			<item value="SUCCESS_MSG"/>
+			<item value="user"/>
+			<item value="Users"/>
+			<item value="User"/>
+			<item value=" DateUtil.currentMillisToDateTimeString(System.currentTimeMillis())"/>
+			<item value="issue"/>
+			<item value="goods-issue"/>
 			<item value="goods-receipt"/>
 			<item value="invoice"/>
 			<item value="Invoice"/>
@@ -32,14 +40,6 @@
 			<item value="History"/>
 			<item value="productInStock"/>
 			<item value="ProductInStock"/>
-			<item value="product"/>
-			<item value="products"/>
-			<item value="product-in-stock"/>
-			<item value="getMultipartFile"/>
-			<item value="setMultipartFile"/>
-			<item value="multipartFile"/>
-			<item value="productInfo"/>
-			<item value="ProductInfo"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

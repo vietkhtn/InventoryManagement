@@ -1,0 +1,13 @@
+package inventory.controller;
+
+import org.apache.log4j.Logger;
+
+@Controller
+public class MenuController {
+	Logger log = Logger.getLogger(MenuController.class);
+	
+	@Autowired
+	private MenuService menuService;
+	
+	@
+}

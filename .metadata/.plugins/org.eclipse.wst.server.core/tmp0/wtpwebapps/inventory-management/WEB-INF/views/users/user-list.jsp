@@ -18,6 +18,7 @@
                   <div class="container" style="padding: 50px;">
 						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/user/list/1" method="POST">
 						
+						
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="userName">Username </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
@@ -47,10 +48,10 @@
 	                          <tr class="headings">
 	                            <th class="column-title"># </th>
 	                            <th class="column-title">Id </th>
+	                            <th class="column-title">Name </th>
 	                            <th class="column-title">Username </th>
 	                            <th class="column-title">Password </th>
 	                            <th class="column-title">Role </th>
-	                            <th class="column-title">Name </th>
 	                            <th class="column-title">Email </th>                      
 	                            <th class="column-title no-link last text-center" colspan = "3"><span class="nobr">Action</span>
 	                            </th>
@@ -70,9 +71,18 @@
 	                        	</c:choose>
 	                            <td class=" ">${pageInfo.getOffset() + loop.index + 1}</td>
 	                            <td class=" ">${user.id }</td>
+	                            <td class=" ">${user.name }</td>
 	                            <td class=" ">${user.userName } </td>
 	                            <td class=" ">${user.password }</td>
-	                            <td class=" ">${user.name }</td>
+	                             <!-- If user role = 1 -> role is admin / role = 2 => role is staff -->
+	                            <c:choose>
+	                            	<c:when test="${user.roleId == 1 }">
+	                            		<td class=" ">admin	</td>
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            		<td class=" ">staff </td>
+	                            	</c:otherwise>
+	                            </c:choose>
 	                            <td class=" ">${user.email }</td>
 	                            <td class="text-center"><a href="<c:url value="/user/view/${user.id}"/>" class="btn btn-round btn-default" href="#">View</a>
 	                            <td class="text-center"><a href="<c:url value="/user/edit/${user.id}"/>" class="btn btn-round btn-primary" href="#">Edit</a>

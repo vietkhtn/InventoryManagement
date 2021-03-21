@@ -18,7 +18,7 @@
 								<div class="x_content"> 
 									<br />
 									<form:form modelAttribute="modelForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/user/save" method="POST">
-										
+									<form:hidden path="id"/>
 										<div class="item form-group">
 											<label for="name" class="col-form-label col-md-3 col-sm-3 label-align">Full Name</label>
 											<div class="col-md-6 col-sm-6 ">

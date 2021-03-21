@@ -21,4 +21,6 @@
 			<item value="org.eclipse.ui.Examples"/>
 		</list>
 	</section>
+	<section name="EditorSelectionDialog">
+	</section>
 </section>

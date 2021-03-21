@@ -4,6 +4,7 @@ package inventory.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -22,7 +23,14 @@ public class Menu implements java.io.Serializable {
 	private Set auths = new HashSet(0);
 	private List<Menu> child;
 	private String idMenu;
-
+	// Create Map key value
+	// Value 1 = user role id
+	// Value 2 = permission of role (1. has permission, 2. no permission)
+	// Ex: admin <1, 1>  role/list => role id= 1 and has permission access role/list 
+	// Ex: staff <2, 0>  role/list => role id = 2 and no permission access role/list 
+	private Map<Integer, Integer> mapAuth;
+	
+	
 	public Menu() {
 	}
 
@@ -136,6 +144,13 @@ public class Menu implements java.io.Serializable {
 	public void setIdMenu(String idMenu) {
 		this.idMenu = idMenu;
 	}
-	
+
+	public Map<Integer, Integer> getMapAuth() {
+		return mapAuth;
+	}
+
+	public void setMapAuth(Map<Integer, Integer> mapAuth) {
+		this.mapAuth = mapAuth;
+	}
 
 }

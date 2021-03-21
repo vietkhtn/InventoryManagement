@@ -89,8 +89,8 @@ public class UserService {
 		if (user != null) {
 			// Update User Info
 			user.setUserName(users.getUserName());
-			user.setName(user.getName());
-			user.setEmail(user.getEmail());
+			user.setName(users.getName());
+			user.setEmail(users.getEmail());
 			user.setUpdateDate(new Date());
 			
 			// update User Role

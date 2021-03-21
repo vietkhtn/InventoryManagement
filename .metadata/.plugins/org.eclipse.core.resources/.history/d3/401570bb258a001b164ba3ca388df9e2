@@ -1,0 +1,67 @@
+package inventory.controller;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import inventory.model.Auth;
+import inventory.model.Menu;
+import inventory.model.Paging;
+import inventory.model.Role;
+import inventory.service.MenuService;
+import inventory.service.RoleService;
+import inventory.util.Constant;
+
+@Controller
+public class MenuController {
+	Logger log = Logger.getLogger(MenuController.class);
+	
+	@Autowired
+	private MenuService menuService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@GetMapping(value = {"menu/list","menu/list/"})
+	public String redirect() {
+		return "redirect:/menu/list/1";
+	}
+	
+	@GetMapping("menu/list/{page}")
+	public String menuList(Model model, @ModelAttribute("searchForm") Menu menu, @PathVariable("page") int page) {
+		Paging paging = new Paging(Constant.itemsPerPage);
+		paging.setIndexPage(page);
+		List<Menu> menuList = menuService.getListMenu(menu, paging);
+		List<Role> roleList = roleService.getRoleList(null, null);
+		// Sort role by id
+		Collections.sort(roleList, (o1,o2)-> o1.getId() - o2.getId());
+		
+		// Create Map 
+		for (Menu menuItem : menuList) {
+			Map<Integer, Integer> mapAuth = new TreeMap<>();
+			// Init all role and set permission value = 0
+			for (Role roleItem : roleList) {
+				mapAuth.put(roleItem.getId(), 0); // admin -> <1,0> ; staff -> <2,0>
+			}
+			// Lookup role in auth table has permission or not => update to mapAuth
+			for (Object obj : menuItem.getAuths()) {
+				Auth auth = (Auth) obj;
+				mapAuth.put(auth.getRole().getId(), auth.getPermission()); // admin <1,1> ; staff <2,0>
+			}
+			menuItem.setMapAuth(mapAuth);
+		}
+		model.addAttribute("pageInfo", paging);
+		model.addAttribute("menus", menuList);
+		model.addAttribute("roles", roleList);
+		return "menu-list";
+	}
+}
