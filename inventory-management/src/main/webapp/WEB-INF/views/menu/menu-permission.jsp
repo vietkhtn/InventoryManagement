@@ -74,9 +74,9 @@
 $(document).ready(function(){
 	// Determind url at current page to highligh in side-bar
 	$('#menu-permissionlistId').addClass('current-page').siblings().removeClass('current-page');
-	var parents = $('#menu-permissionId').parents('li');
+	var parents = $('#menu-permissionlistId').parents('li');
 	parents.addClass('active').siblings().removeClass('active');
-	$('#menu-permissionId').parents().show();
+	$('#menu-permissionlistId').parents().show();
 })
 function cancel() {
 	window.location.href = '<c:url value="/menu/list"/>';

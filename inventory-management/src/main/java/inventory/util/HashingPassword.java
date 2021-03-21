@@ -25,7 +25,7 @@ public class HashingPassword {
 	
 
 	public static void main(String[] args) {
-		String rs = encrypt("1234");
+		String rs = encrypt("123456");
 		System.out.println(rs);
 	}
 	

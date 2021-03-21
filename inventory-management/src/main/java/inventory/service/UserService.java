@@ -89,6 +89,7 @@ public class UserService {
 		if (user != null) {
 			// Update User Info
 			user.setUserName(users.getUserName());
+			user.setPassword(HashingPassword.encrypt(users.getPassword())); // Hash Password
 			user.setName(users.getName());
 			user.setEmail(users.getEmail());
 			user.setUpdateDate(new Date());

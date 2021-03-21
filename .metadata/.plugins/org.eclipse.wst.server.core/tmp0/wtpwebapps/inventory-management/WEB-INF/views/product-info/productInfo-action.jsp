@@ -116,10 +116,10 @@
 <script>
 $(document).ready(function(){
 	// Determind url at current page to highligh in side-bar
-	$('#categorylistId').addClass('current-page').siblings().removeClass('current-page');
-	var parents = $('#categorylistId').parents('li');
+	$('#product-infolistId').addClass('current-page').siblings().removeClass('current-page');
+	var parents = $('#product-infolistId').parents('li');
 	parents.addClass('active').siblings().removeClass('active');
-	$('#categorylistId').parents().show();
+	$('#product-infolistId').parents().show();
 })
 function cancel() {
 	window.location.href = '<c:url value="/product-info/list"/>';

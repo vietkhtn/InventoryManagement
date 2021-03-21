@@ -30,10 +30,6 @@ public class UserValidator implements Validator {
 		if (user.getId() == null) {
 			ValidationUtils.rejectIfEmpty(errors, "name", "msg.required");
 		}
-		List<Users> users = userService.findByProperty("userName", user.getUserName());
-		if (users != null && !users.isEmpty()) {
-			errors.rejectValue("userName", "msg.username.exist");
-		}
 	}
 }
 

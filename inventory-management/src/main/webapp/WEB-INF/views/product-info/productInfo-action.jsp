@@ -22,6 +22,7 @@
 										<form:hidden path="activeFlag"/> 
 										<form:hidden path="createDate"/>
 										<form:hidden var="imgSrc" path="imgUrl"/>
+										<img src="<c:url value="${imgSrc}"/>" width="300px" height="300px"/>   
 										
 										<!-- Select category -->
 										<!-- Check if not in view action => select category, if in view action => show form category name -->
@@ -116,10 +117,10 @@
 <script>
 $(document).ready(function(){
 	// Determind url at current page to highligh in side-bar
-	$('#categorylistId').addClass('current-page').siblings().removeClass('current-page');
-	var parents = $('#categorylistId').parents('li');
+	$('#product-infolistId').addClass('current-page').siblings().removeClass('current-page');
+	var parents = $('#product-infolistId').parents('li');
 	parents.addClass('active').siblings().removeClass('active');
-	$('#categorylistId').parents().show();
+	$('#product-infolistId').parents().show();
 })
 function cancel() {
 	window.location.href = '<c:url value="/product-info/list"/>';

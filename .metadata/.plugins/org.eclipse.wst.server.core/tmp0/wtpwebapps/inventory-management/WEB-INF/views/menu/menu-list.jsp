@@ -25,8 +25,8 @@
 		                        <thead>
 		                          <tr class="headings">
 		                            <th rowspan="2" class="column-title" style="border-left: 2px solid"># </th>
-		                            <th rowspan="2" class="column-title" style="border-left: 2px solid">Url </th>
-		                            <th rowspan="2" class="column-title" style="border-left: 2px solid">Status </th>
+		                            <th rowspan="2" class="column-title text-center" style="border-left: 2px solid">Url </th>
+		                            <th rowspan="2" class="column-title text-center" style="border-left: 2px solid">Status </th>
 		                            <th class="column-title text-center" colspan="${roles.size()}" style="border-left: 2px solid">Role </th>
 		                            
 		                            <!-- List all role name in Role column -->                    
