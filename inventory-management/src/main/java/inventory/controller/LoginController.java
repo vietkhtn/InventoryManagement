@@ -101,7 +101,7 @@ public class LoginController {
 			}
 			menu.setChild(childList);
 		}
-		// Sort mennu due to Order_Index
+		// Sort menu due to Order_Index
 		sortMenu(menuList);
 		for(Menu menu : menuList) {
 			sortMenu(menu.getChild());

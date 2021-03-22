@@ -68,9 +68,10 @@
                           <tr class="headings">
                             <th class="column-title"># </th>
                             <th class="column-title">Code </th>
-                            <th class="column-title">Qty </th>
-                            <th class="column-title">Price </th>
                             <th class="column-title">Product </th>
+                            <th class="column-title">Qty </th>
+                            <th class="column-title">Unit Price </th>
+                            <th class="column-title">Total Price </th>
                             <th class="column-title">Update Date </th>
                             <th class="column-title no-link last text-center" colspan = "3"><span class="nobr">Action</span>
                             </th>
@@ -90,9 +91,10 @@
                         	</c:choose>
                             <td class=" ">${pageInfo.getOffset() + loop.index + 1}</td>
                             <td class=" ">${invoice.code } </td>
+                            <td class=" ">${invoice.productInfo.name }</td>
                             <td class=" ">${invoice.qty }</td>
                             <td class="priceFormat">${invoice.price }</td>
-                            <td class=" ">${invoice.productInfo.name }</td>
+                            <td class="priceFormat">${invoice.price * invoice.qty}</td>
                             <td class="date">${invoice.updateDate }</td>
                             
                             <td class="text-center"><a href="<c:url value="/goods-receipt/view/${invoice.id}"/>" class="btn btn-round btn-default" href="#">View</a>

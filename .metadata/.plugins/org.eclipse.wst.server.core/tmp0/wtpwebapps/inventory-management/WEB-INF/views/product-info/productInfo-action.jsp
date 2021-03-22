@@ -21,7 +21,8 @@
 										<form:hidden path="id"/>
 										<form:hidden path="activeFlag"/> 
 										<form:hidden path="createDate"/>
-										<form:hidden var="imgSrc" path="imgUrl"/>
+										<form:hidden path="imgUrl"/>
+										
 										
 										<!-- Select category -->
 										<!-- Check if not in view action => select category, if in view action => show form category name -->
@@ -87,12 +88,14 @@
 										</c:if>			
 										
 										<!-- Image -->
-										<div class="item form-group">
-											<label for="imgUrl" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
-											<div class="col-md-6 col-sm-6 ">
-                            			    	<img src="<c:url value="${imgUrl}"/>" width="300px" height="300px"/>   
+										<c:if test="${viewImage}">
+											<div class="item form-group">
+												<label for="imgUrl" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
+												<div class="col-md-6 col-sm-6 ">
+	                            			    	<img src="<c:url value="${modelForm.imgUrl}"/>" width="300px" height="300px"/>    
+												</div>
 											</div>
-										</div>
+										</c:if>
 																										
 										<!-- line seperated -->
 										<div class="ln_solid"></div>

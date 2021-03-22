@@ -77,16 +77,15 @@
 														</div>
 													</c:when>
 													<c:otherwise>
-													<form:input path="roleId" cssClass="form-control " disabled="${viewOnly}"/>
-														 <%-- <!-- If roleId = 1 -> row is admin/ type = 2 => row is staff -->
+														 <!-- If roleId = 1 -> row is admin/ type = 2 => row is staff -->
 								                            <c:choose>
-								                            	<c:when test="${roleId == 1 }">
+								                            	<c:when test="${modelForm.roleId == 1 }">
 								                            		<input value="admin" class="form-control" disabled="${viewOnly}"/>
 								                            	</c:when>
 								                            	<c:otherwise>
 								                            		<input value="staff" class="form-control" disabled="${viewOnly}"/>
 								                            	</c:otherwise>
-								                            </c:choose> --%>
+								                            </c:choose>
 													</c:otherwise>
 												</c:choose>				
 											</div>

@@ -114,6 +114,7 @@ public class ProductInfoController {
 		model.addAttribute("mapCategory",mapCategory);
 		// If in view mode => cannot input value
 		model.addAttribute("viewOnly", false);
+		model.addAttribute("viewImage", false);
 		return "productInfo-action";
 	}
 	
@@ -138,6 +139,7 @@ public class ProductInfoController {
 			model.addAttribute("titlePage", "Edit ProductInfo");
 			model.addAttribute("modelForm", productInfo);
 			model.addAttribute("viewOnly", false);
+			model.addAttribute("viewImage", true);
 			return "productInfo-action";
 		}
 		// if not valid => go back to productInfo/list
@@ -153,6 +155,7 @@ public class ProductInfoController {
 			model.addAttribute("titlePage", "View ProductInfo");
 			model.addAttribute("modelForm", productInfo);
 			model.addAttribute("viewOnly", true);
+			model.addAttribute("viewImage", true);
 			return "productInfo-action";
 		}
 		// if not valid => go back to productInfo/list

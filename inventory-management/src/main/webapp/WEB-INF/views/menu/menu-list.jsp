@@ -16,7 +16,9 @@
                   <a class="btn btn-app" href="<c:url value="/menu/permission"/>"><i class="fa fa-plus"></i>Permission</a>
                   <!-- Form Search -->
                   <div class="container" style="padding: 50px;">
-						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/menu/list/1" method="POST"></form:form>
+						<form:form modelAttribute="searchForm" cssClass="form-horizontal form-label-left" servletRelativeAction="/menu/list/1" method="POST">
+							
+						</form:form>
 					</div>
 	                  <div class="ln_solid"></div>
 						  <!-- Table Category -->
